@@ -44,6 +44,8 @@ Footer.vue:底部版权组件<br>
                 <button @click="today">今天</button>
             </div>
         </div>
+```
+```
 <script>
 computed: {
         years() {
