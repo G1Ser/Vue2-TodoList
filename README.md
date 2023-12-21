@@ -153,3 +153,19 @@ Footer.vue:底部版权组件<br>
             this.content = ''
         }
 ```
+2.中间事项表<br>
+设置动画组，实现拖拽换行的效果，通过设置checkbox来更改事项完成状况，设置text文本框进行双击修改操作。
+```
+        <transition-group name="list" class="todo-list">
+            <TodoItem v-for="todo in sortedTodos" :key="todo.id" :todo="todo" @dragStart="dragStart($event, todo)"
+                @dragOver="dragOver($event)" @drop="drop($event, todo)"></TodoItem>
+        </transition-group>
+```
+```
+    <div class="todo-item" draggable="true" @dragstart="$emit('dragStart', $event)" @dragover="$emit('dragOver', $event)" @drop="$emit('drop', $event)">
+        <input type="checkbox" :checked="todo.completed" @change="Select" />
+        <input type="text" v-if="iswitch" v-focus v-model="content" @blur="iswitch = false" @keyup.enter="updatecontent" />
+        <label v-else :class="labelstyle" @dblclick="editContent">{{ todo.content }}</label>
+        <button @click="deleteTodo"></button>
+    </div>
+```
