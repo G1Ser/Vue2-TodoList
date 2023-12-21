@@ -125,3 +125,31 @@ Footer.vue:底部版权组件<br>
         }
     }
 ```
+### 2.2.待办事项组件
+待办事项主要由头部输入框、中间事项表、底部信息栏组成。<br>
+1.头部输入框<br>
+通过vueX读取当前的日期，将todo添加入vueX数组数据中。todo数组拥有五个字段，id:根据时间戳给予、content：输入框输入的内容、completed：完成状况（默认false）、date：当前日期、order：根据order排序。
+```
+        addtodo() {
+            if (this.content === "") {
+                alert("请输入内容");
+                return;
+            }
+            const date = `${this.$store.state.year}-${this.$store.state.month}-${this.$store.state.day}`;
+            const todo = {
+                id: Date.now(),
+                content: this.content,
+                completed: false,
+                date: date,
+                order: Date.now()
+            };
+            //检查是否已经存在相同内容和日期的待办事项
+            const exists = this.$store.state.todos.some(todo => todo.content === this.content && todo.date === date)
+            if (exists) {
+                alert("该事项已存在");
+                return;
+            }
+            this.$store.dispatch('addTodo', todo);
+            this.content = ''
+        }
+```
