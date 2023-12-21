@@ -200,3 +200,24 @@ Footer.vue:底部版权组件<br>
         }
     }
 ```
+```
+SET_TODOS(state, todos) {
+      state.todos = todos;
+      localStorage.setItem('todos', JSON.stringify(state.todos));
+  }
+updateOrder(context, payload) {
+      const todos = context.state.todos;
+
+      // 查找并更新这两个待办事项的顺序
+      todos.forEach(todo => {
+        if (todo.id === payload.draggingTodoId) {
+          todo.order = payload.draggingTodoOrder;
+        } else if (todo.id === payload.targetTodoId) {
+          todo.order = payload.targetTodoOrder;
+        }
+      });
+
+      // 将更新后的待办事项提交到状态中
+      context.commit('SET_TODOS', todos);
+    }
+```
