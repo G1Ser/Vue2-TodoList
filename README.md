@@ -47,7 +47,7 @@ Footer.vue:底部版权组件<br>
 ```
 ```
 <script>
-computed: {
+    computed: {
         years() {
             const currentYear = new Date().getFullYear();
             return [currentYear - 2, currentYear - 1, currentYear, currentYear + 1, currentYear + 2];
@@ -55,6 +55,73 @@ computed: {
         months() {
             return Array.from({ length: 12 }, (_, i) => i + 1);
         }
-}
+    },
 </script>
+```
+中间主要部分通过获得year,month来判断月份的天数和星期，将返回的数据进行渲染,并在点击日期的时候，将year、month、day返回给vueX的公共数据。
+```
+    computed: {
+        lists() {
+            return this.initList(this.year, this.month);
+        },
+    },
+    methods: {
+        initList(year, month) {
+            let firstDate = new Date(year, month - 1, 1);
+            let day = firstDate.getDay();
+            let nextDate = new Date(year, month, 0);
+            let nextday = nextDate.getDate();
+            let endday = nextDate.getDay();
+            let lastDate = new Date(year, month - 1, 0);
+            let lastday = lastDate.getDate();
+            let arr = [];
+            for (let i = 0, j = lastday - day + 1; i < day; i++, j++) {
+                arr[i] = {
+                    value: j,
+                    type: -1,
+                };
+            }
+            for (let i = day, j = 1; j <= nextday; i++, j++) {
+                arr[i] = {
+                    value: j,
+                    type: 0,
+                };
+            }
+            for (let i = arr.length, j = 1; j < 7 - endday; i++, j++) {
+                arr[i] = {
+                    value: j,
+                    type: 1,
+                };
+            }
+            return arr;
+        },
+        switchday(list) {
+            if (list.type === 0) {
+                this.curDay = list.value
+            }
+            if (list.type === -1) {
+                this.curDay = list.value
+                if (this.month === 1) {
+                    this.month = 12
+                    this.year--
+                    return
+                }
+                this.month--
+            }
+            if (list.type === 1) {
+                this.curDay = list.value
+                if (this.month === 12) {
+                    this.month = 1
+                    this.year++
+                    return
+                }
+                this.month++
+            }
+            this.$store.dispatch('updateDate', {
+                year: this.year,
+                month: this.month,
+                day: this.curDay
+            })
+        }
+    }
 ```
