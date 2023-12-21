@@ -14,14 +14,14 @@
 
 ![TodoItem操作](https://github.com/G1Ser/Vue2-TodoList/blob/main/Image/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E6%93%8D%E4%BD%9C.gif "TodoItem操作")
 ### 1.3.项目部署
-• assets：
-css:样式库
-fonts:字体库
-images:图片素材库
-• components：
-Header.vue:头部组件
-Main-Date:左边日历组件
-Main-TodoList:右边事项组件
-Footer.vue:底部版权组件
-• store：
+• assets：<br>
+css:样式库<br>
+fonts:字体库<br>
+images:图片素材库<br>
+• components：<br>
+Header.vue:头部组件<br>
+Main-Date:左边日历组件<br>
+Main-TodoList:右边事项组件<br>
+Footer.vue:底部版权组件<br>
+• store：<br>
 存放公共数据，实现Date和TodoList组件之间数据的交互。
