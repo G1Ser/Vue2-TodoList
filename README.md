@@ -13,7 +13,7 @@
 ![查看每天待办事项](https://github.com/G1Ser/Vue2-TodoList/blob/main/Image/%E6%97%A5%E8%AE%B0%E8%AE%B0%E5%BD%95%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9.gif "查看每天待办事项")
 
 ![TodoItem操作](https://github.com/G1Ser/Vue2-TodoList/blob/main/Image/%E5%BE%85%E5%8A%9E%E4%BA%8B%E9%A1%B9%E6%93%8D%E4%BD%9C.gif "TodoItem操作")
-### 1.3.项目部署
+### 1.3.项目管理
 • assets：<br>
 css:样式库<br>
 fonts:字体库<br>
@@ -25,3 +25,4 @@ Main-TodoList:右边事项组件<br>
 Footer.vue:底部版权组件<br>
 • store：<br>
 存放公共数据，实现Date和TodoList组件之间数据的交互。
+## 2.项目部署
