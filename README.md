@@ -1,1 +1,2 @@
-本项目是基于vue2、vueX技术开发的TodoList界面，通过本次项目，详细了解vue技术的应用。
+# Vue3-Weather
+本项目是基于vue3、vite制作的天气系统。通过这个项目，我旨在学习Vite项目部署，了解vue3、vue-router、Echarts技术的应用。
