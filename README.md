@@ -26,3 +26,33 @@ Footer.vue:底部版权组件<br>
 • store：<br>
 存放公共数据，实现Date和TodoList组件之间数据的交互。
 ## 2.项目部署
+### 2.1.日历组件
+日历组件分为头部内容和中间主要内容<br>
+头部由时钟和按钮来组成
+```
+        <div class="top-select">
+            <Clock></Clock>
+            <div class="data-select">
+                <select v-model="year" @change="firstDay">
+                    <option v-for="(year, index) in years" :key="index" :value="year">{{ year }}年</option>
+                </select>
+                <select v-model="month" @change="firstDay">
+                    <option v-for="(month, index) in months" :key="index" :value="month">{{ month }}月</option>
+                </select>
+            </div>
+            <div class="today">
+                <button @click="today">今天</button>
+            </div>
+        </div>
+<script>
+computed: {
+        years() {
+            const currentYear = new Date().getFullYear();
+            return [currentYear - 2, currentYear - 1, currentYear, currentYear + 1, currentYear + 2];
+        },
+        months() {
+            return Array.from({ length: 12 }, (_, i) => i + 1);
+        }
+}
+</script>
+```
