@@ -169,3 +169,34 @@ Footer.vue:底部版权组件<br>
         <button @click="deleteTodo"></button>
     </div>
 ```
+```
+    methods: {
+        Select(event) {
+            this.$store.dispatch('toggleCompleted', { id: this.todo.id, completed: event.target.checked });
+        },
+        deleteTodo() {
+            this.$store.dispatch('toggleDelete', this.todo.id)
+        },
+        editContent() {
+            if (!this.todo.completed) {
+                this.iswitch = true,
+                    this.content = this.todo.content
+            }
+        },
+        updatecontent(event) {
+            if (event.target.value === '') {
+                alert("请输入内容");
+                return;
+            }
+            const date = `${this.$store.state.year}-${this.$store.state.month}-${this.$store.state.day}`;
+            //检查是否已经存在相同内容和日期的待办事项
+            const exists = this.$store.state.todos.some(todo => todo.content === event.target.value && todo.date === date)
+            if (exists) {
+                alert("该事项已存在");
+                return;
+            }
+            this.$store.dispatch('editContent', {id:this.todo.id,content:event.target.value});
+            this.iswitch=false
+        }
+    }
+```
