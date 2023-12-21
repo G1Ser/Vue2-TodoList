@@ -221,3 +221,21 @@ updateOrder(context, payload) {
       context.commit('SET_TODOS', todos);
     }
 ```
+3.底部信息栏<br>
+底部信息栏通过传递filtertype来切换渲染的todolist
+```
+        filtertodos() {
+            const date = `${this.$store.state.year}-${this.$store.state.month}-${this.$store.state.day}`;
+            switch (this.filtertype) {
+                case "all":
+                    return this.$store.state.todos.filter(todo => todo.date === date);
+                    break;
+                case "active":
+                    return this.$store.state.todos.filter(todo => todo.date === date && todo.completed === false);
+                    break;
+                case "completed":
+                    return this.$store.state.todos.filter(todo => todo.date === date && todo.completed === true);
+                    break;
+            }
+        }
+```
